@@ -22,7 +22,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# CSS and UI setup code here (unchanged)...
+
+st.title(" 🏥 MediChat Pro - Medical Document Assistant")
+
 
 # Sidebar for document upload
 with st.sidebar:
