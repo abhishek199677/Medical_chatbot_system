@@ -1,9 +1,17 @@
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from typing import List
+from sentence_transformers import SentenceTransformer
 
-def create_faiss_index(texts: List[str]) :
-    embeddings = HuggingFaceEmbeddings(model_name = "sentence-transformers/all-mpnet-base-v2")
+class HuggingFaceEmbeddingsCpu(HuggingFaceEmbeddings):
+    def __init__(self, model_name: str):
+        super().__init__(model_name=model_name)
+        # Force model to CPU
+        self.client = SentenceTransformer(model_name, device="cpu")
+
+
+def create_faiss_index(texts: List[str]):
+    embeddings = HuggingFaceEmbeddingsCpu(model_name="sentence-transformers/all-mpnet-base-v2")
     return FAISS.from_texts(texts, embeddings)
 
 
