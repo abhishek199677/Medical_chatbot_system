@@ -1,4 +1,4 @@
-numpy==1.26.2
+numpy>=2.1.0
 pypdf
 faiss-cpu
 langchain>=0.3.27
